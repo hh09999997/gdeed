@@ -1,0 +1,44 @@
+<!-- ================= FOOTER ================= -->
+<style>
+    footer {
+        background-color: #1e1e1e;
+        color: #f9f9f9;
+        text-align: center;
+        padding: 25px 10px;
+        margin-top: 60px;
+        border-top: 2px solid #d4af37;
+    }
+    footer a {
+        color: #d4af37;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: 0.3s;
+    }
+    footer a:hover {
+        color: #ffcc00;
+    }
+    .footer-social {
+        margin-top: 15px;
+    }
+    .footer-social img {
+        width: 26px;
+        margin: 0 6px;
+        filter: brightness(90%);
+        transition: 0.3s;
+    }
+    .footer-social img:hover {
+        filter: brightness(130%);
+    }
+</style>
+
+<footer>
+    <p>© {{ now|date:"Y" }} مركز الديكور العصري — جميع الحقوق محفوظة</p>
+    <div class="footer-social">
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+        <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+    </div>
+</footer>
+
+</body>
+</html>

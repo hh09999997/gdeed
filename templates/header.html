@@ -1,0 +1,58 @@
+<!-- ================= HEADER ================= -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}مركز الديكور العصري{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Cairo", sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            direction: rtl;
+        }
+        header {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #d4af37;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="/" class="logo">مركز الديكور العصري</a>
+    <nav>
+        <a href="/">الرئيسية</a>
+        <a href="/shop/">المعرض</a>
+        <a href="/about/">من نحن</a>
+        <a href="/contact/">تواصل معنا</a>
+    </nav>
+</header>
+
+<main>
+{% block content %}
+{% endblock %}
