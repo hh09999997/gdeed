@@ -8,39 +8,28 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 
 from pathlib import Path
 
-# ----------------------------------------
-# 🧩 المسار الأساسي للمشروع
-# ----------------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ----------------------------------------
-# 🔐 مفاتيح الأمان
-# ----------------------------------------
 SECRET_KEY = 'django-insecure-qe3x1vk3p*6i=g6fg3z)#7tb%pnlbtmfo9p%qy*hh)(^47n#+b'
 DEBUG = True
 ALLOWED_HOSTS = []
 
-# ----------------------------------------
-# 🧱 التطبيقات المثبتة
-# ----------------------------------------
 INSTALLED_APPS = [
-    # تطبيقات Django الافتراضية
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.admin',  #
+    'django.contrib.auth',  #
+    'django.contrib.contenttypes',  #
+    'django.contrib.sessions',  #
+    'django.contrib.messages',  #
+    'django.contrib.staticfiles',  #
+ # Cloudinary
+    'cloudinary_storage',
+    'cloudinary',
 
-    # تطبيقات المشروع الداخلية
     'core',        # الواجهة والصفحات العامة (SSR)
     'shop',        # المتجر – المنتجات والسلة والطلبات والدفع
     'accounts',    # الحسابات – المستخدمون ولوحة التحكم
 ]
 
-# ----------------------------------------
-# ⚙️ الميدل وير
-# ----------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,22 +41,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ----------------------------------------
-# 🌐 إعدادات المسارات العامة
-# ----------------------------------------
-ROOT_URLCONF = 'gdeed.urls'
+ROOT_URLCONF = 'gdeed.urls'  # اسم التطبيق والمسار الخاص به
 
-# ----------------------------------------
-# 🖥️ إعدادات القوالب (Templates)
-# ----------------------------------------
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
-        # مسار القوالب العام: C:\Users\alamr\gdeed\templates
         'DIRS': [BASE_DIR / 'templates'],
 
-        # تفعيل القوالب داخل كل تطبيق تلقائيًا (core, shop, accounts)
         'APP_DIRS': True,
 
         'OPTIONS': {
@@ -81,14 +62,8 @@ TEMPLATES = [
     },
 ]
 
-# ----------------------------------------
-# 🧩 تطبيق WSGI
-# ----------------------------------------
 WSGI_APPLICATION = 'gdeed.wsgi.application'
 
-# ----------------------------------------
-# 🗄️ قاعدة البيانات
-# ----------------------------------------
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -96,9 +71,6 @@ DATABASES = {
     }
 }
 
-# ----------------------------------------
-# 🔑 التحقق من كلمات المرور
-# ----------------------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -106,52 +78,56 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# ----------------------------------------
-# 🌍 اللغة والتوقيت
-# ----------------------------------------
 LANGUAGE_CODE = 'ar'
 TIME_ZONE = 'Asia/Riyadh'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# ----------------------------------------
-# 🖼️ إعدادات الملفات الثابتة (Static Files)
-# ----------------------------------------
-# عنوان الوصول عبر المتصفح
 STATIC_URL = '/static/'
 
-# مجلد التطوير الأساسي
 STATICFILES_DIRS = [
     BASE_DIR / 'static',        # C:\Users\alamr\gdeed\static
 ]
 
-# مجلد التجميع النهائي عند تنفيذ collectstatic
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # C:\Users\alamr\gdeed\staticfiles
 
-# ----------------------------------------
-# 📁 إعدادات ملفات الوسائط (Media Files)
-# ----------------------------------------
-# عنوان الوصول عبر المتصفح
 MEDIA_URL = '/media/'
 
-# المجلد الفعلي لحفظ الملفات
 MEDIA_ROOT = BASE_DIR / 'media'         # C:\Users\alamr\gdeed\media
 
-# ----------------------------------------
-# 🌐 إعدادات الترجمة (لللغات المتعددة)
-# ----------------------------------------
 LOCALE_PATHS = [BASE_DIR / 'locale']
 
-# ----------------------------------------
-# ⚙️ الإعداد الافتراضي لمعرف الجداول
-# ----------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name="اسم_السحابة_الخاص_بك",
+    api_key="مفتاح_API_الخاص_بك",
+    api_secret="الرمز_السري_الخاص_بك",
+    secure=True
+)
+
+# استخدم Cloudinary كمخزن للوسائط (MEDIA)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # ----------------------------------------
-# ⚡ إعدادات إضافية مستقبلية للنشر
+# ☁️ إعدادات Cloudinary لتخزين الوسائط
 # ----------------------------------------
-# يمكنك تفعيلها لاحقًا عند النشر على السيرفر:
-# SECURE_SSL_REDIRECT = True
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+# بيانات الاتصال من لوحة Cloudinary Dashboard
+# ⚠️ ملاحظة: في بيئة الإنتاج يُفضل استخدام ملف .env لحماية المفاتيح
+cloudinary.config(
+    cloud_name="dkzbyddkp",                      # اسم السحابة (Cloud Name)
+    api_key="815734787826891",                   # مفتاح API
+    api_secret="8FcVRKkbVONyzmQYPGQl1hkJGvg",    # المفتاح السري (API Secret)
+    secure=True                                  # استخدام HTTPS الآمن
+)
+
+# استخدم Cloudinary كمخزن افتراضي للوسائط (Media)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

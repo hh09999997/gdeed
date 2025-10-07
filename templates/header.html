@@ -30,27 +30,55 @@
             text-decoration: none;
             letter-spacing: 1px;
         }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 12px;
+            margin: 0 8px;
             font-weight: 600;
             transition: 0.3s;
         }
         nav a:hover {
             color: #d4af37;
         }
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .auth-btn {
+            background-color: #d4af37;
+            color: #1e1e1e;
+            font-weight: bold;
+            padding: 6px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .auth-btn:hover {
+            background-color: #ffcc00;
+        }
     </style>
 </head>
 <body>
+
 <header>
     <a href="/" class="logo">مركز الديكور العصري</a>
+
     <nav>
         <a href="/">الرئيسية</a>
         <a href="/shop/">المعرض</a>
         <a href="/about/">من نحن</a>
         <a href="/contact/">تواصل معنا</a>
     </nav>
+
+    <div class="auth-buttons">
+        <a href="{% url 'accounts:register' %}" class="auth-btn">إنشاء حساب</a>
+        <a href="{% url 'accounts:login' %}" class="auth-btn">تسجيل الدخول</a>
+    </div>
 </header>
 
 <main>

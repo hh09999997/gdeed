@@ -1,0 +1,36 @@
+{% include 'header.html' %}
+
+<div style="max-width:500px; margin:auto; background:#fff; padding:30px; border-radius:10px; box-shadow:0 3px 15px rgba(0,0,0,0.1); margin-top:60px;">
+    <h2 style="text-align:center; color:#d4af37;">إنشاء حساب جديد</h2>
+
+    <form method="post" style="margin-top:20px;">
+        {% csrf_token %}
+        <label>اسم المستخدم:</label>
+        <input type="text" name="username" required class="form-control mb-2">
+
+        <label>البريد الإلكتروني:</label>
+        <input type="email" name="email" required class="form-control mb-2">
+
+        <label>كلمة المرور:</label>
+        <input type="password" name="password" required class="form-control mb-2">
+
+        <label>رقم الجوال:</label>
+        <input type="text" name="phone" class="form-control mb-2">
+
+        <label>العنوان:</label>
+        <input type="text" name="address" class="form-control mb-2">
+
+        <label>المدينة:</label>
+        <input type="text" name="city" class="form-control mb-3">
+
+        <button type="submit" style="background-color:#d4af37; color:#1e1e1e; font-weight:bold; padding:10px 25px; border:none; border-radius:6px; width:100%;">
+            إنشاء الحساب
+        </button>
+    </form>
+
+    <p style="text-align:center; margin-top:15px;">
+        لديك حساب بالفعل؟ <a href="{% url 'accounts:login' %}" style="color:#d4af37; text-decoration:none;">تسجيل الدخول</a>
+    </p>
+</div>
+
+{% include 'footer.html' %}
